@@ -27,7 +27,7 @@ end
 
 class Train       #Класс Train для создания поездов
   
-  attr_accessor :name, :type, :quantity_wagons, :current_speed  #методы доступа к переменным экземпляра
+  attr_reader :name, :type, :quantity_wagons, :current_speed  #методы доступа к переменным экземпляра
   def initialize(name, type, quantity_wagons)                   #конструктор класса
     @name = name                                                #инициализация переменных экземпляра
     @type = type
@@ -78,7 +78,7 @@ class Train       #Класс Train для создания поездов
     
     if @current_station_index != 0              #если это не начальная станция маршрута
       current_station.train_depature(self)      #посылаем текущей станции сообщение отправить поезд
-      preview_station.train_arrival(self)       #посылаем предыдущей станции сообщение принять поезд
+      previous_station.train_arrival(self)       #посылаем предыдущей станции сообщение принять поезд
       @current_station_index -= 1               #уменьшаем индекс текущей станции
     else
       puts "Поезд вернулся на начальную станцию"  #если поезд прибыл на начальную станцию, сообщаем об этом
@@ -86,7 +86,7 @@ class Train       #Класс Train для создания поездов
 
   end
 
-  def preview_station                             #метод получения предыдущей станции
+  def previous_station                             #метод получения предыдущей станции
     @route.stations[@current_station_index-1] if @current_station_index-1 >= 0  #получаем из маршрута предыдущую станцию, если поезд находится не на начальной станции
   end
 
