@@ -7,9 +7,9 @@ class PassengerTrain < Train    #класс для создания пассаж
   end
 
   def attach_wagon(wagon)
-    if wagon.class == PassengerWagon
-    super  #вагон прицепляется, если текущая скорость поезда равна 0,
-    end
+
+    super if is_a?(PassengerWagon) #вагон прицепляется, если текущая скорость поезда равна 0,
+
   end     # и если это пассажирский вагон
 
 
